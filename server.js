@@ -71,8 +71,13 @@ app.get('/api', (req, res) => {
   })
 });
  
-app.get('/profile', function(req, res){
+app.get('api/profile', function(req, res){
   res.send("starting my profile");
+  res.json({
+    name:"nassima",
+    address:"SF",
+    myGitHub:"https://github.com/nassBouz/sf-wdi-51-assignments"
+  })
 });
 /**********
  * SERVER *
