@@ -49,16 +49,31 @@ app.get('/api', (req, res) => {
   res.json({
     woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/example-username/express-personal-api/README.md", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentationUrl: "https://github.com/nassBouz/sf-wdi-51-assignments/express-personal-api/README.md", 
+    baseUrl: "https://obscure-shore-80964.herokuapp.com/",
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {
+        method: "GET", 
+        path: "/api", 
+        description: "Describes all available endpoints"
+      },
+      {
+        method: "GET",
+        path: "/api/profile", 
+        description: "Data about me"
+      }, // CHANGE ME
+      {
+        method: "POST",
+        path: "/api/campsites",
+        description: "E.g. Create a new campsite"
+      } // CHANGE ME
     ]
   })
 });
-
+ 
+app.get('api/profile', function(req, res){
+  res.send("starting my profile");
+});
 /**********
  * SERVER *
  **********/
