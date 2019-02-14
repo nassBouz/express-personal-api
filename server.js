@@ -72,11 +72,16 @@ app.get('/api', (req, res) => {
 });
  
 app.get('api/profile', function(req, res){
-  res.send("starting my profile");
+  //res.send("starting my profile");
   res.json({
     name:"nassima",
-    address:"SF",
-    myGitHub:"https://github.com/nassBouz/sf-wdi-51-assignments"
+    gitHubUsername: "nassBouz",
+    githubLink:"https://github.com/nassBouz/sf-wdi-51-assignments",
+    githubProfileImage: "https://github.com/settings/profile",
+    personalSiteLink: " https://nassbouz.github.io/NB-Project00",
+    currentCity:"San Francisco",
+    citiesBeenTo:[{name:"Algiers", contry:"Algeria"},{ name:"Paris", contry:"France"},
+    {name:"Madrid",contry:"Spain"}]
   })
 });
 /**********
