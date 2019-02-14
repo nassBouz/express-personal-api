@@ -50,7 +50,7 @@ app.get('/api', (req, res) => {
     woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
     documentationUrl: "https://github.com/nassBouz/sf-wdi-51-assignments/express-personal-api/README.md", 
-    baseUrl: "https://obscure-shore-80964.herokuapp.com/",
+    baseUrl: "https://obscure-shore-80964.herokuapp.com",
     endpoints: [
       {
         method: "GET", 
@@ -71,7 +71,7 @@ app.get('/api', (req, res) => {
   })
 });
  
-app.get('api/profile', function(req, res){
+app.get('/api/profile', function(req, res){
   //res.send("starting my profile");
   res.json({
     name:"nassima",
