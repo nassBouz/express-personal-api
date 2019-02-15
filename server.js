@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// const db = require('./models');
+ const db = require('./models');
 
 /**********
  * ROUTES *
@@ -64,7 +64,7 @@ app.get('/api', (req, res) => {
       }, // CHANGE ME
       {
         method: "POST",
-        path: "/api/campsites",
+        path: "/api/wishList",
         description: "E.g. Create a new campsite"
       } // CHANGE ME
     ]
@@ -87,6 +87,13 @@ app.get('/api/profile', function(req, res){
 /**********
  * SERVER *
  **********/
+app.get('/api/wishList', (req, res) => {
+  // send all books as JSON response
+  db.WList.find({}, (err, wishlist) => {
+      if (err) { return console.log("index error: " + err); }
+      res.json(wishlist);
+  });
+});
 
 // listen on the port that Heroku prescribes (process.env.PORT) OR port 3000
 app.listen(process.env.PORT || 3000, () => {
