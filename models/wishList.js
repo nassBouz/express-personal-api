@@ -3,7 +3,7 @@ Schema = mongoose.Schema;
 
 const WishListSchema = new Schema({
     description: String,
-    price:Number,
+    price: Number,
     amazonLink:String
 });
 
