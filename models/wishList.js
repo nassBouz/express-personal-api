@@ -10,15 +10,3 @@ const WishListSchema = new Schema({
 const WList = mongoose.model('WList', WishListSchema);
 
 module.exports = WList;
-
-
-// const mongoose = require('mongoose'),
-//   Schema = mongoose.Schema;
-
-// const CampsiteSchema = new Schema({
-//   description: String
-// });
-
-// const Campsite = mongoose.model('Campsite', CampsiteSchema);
-
-// module.exports = Campsite;

@@ -7,8 +7,6 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// allow cross origin requests (optional)
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -43,9 +41,7 @@ app.get('/', function homepage(req, res) {
  */
 
 app.get('/api', (req, res) => {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
-  // But you should change almost every line of this response.
+
   res.json({
     nassimaMyEndpoints: true, 
     message: "Welcome to my personal api! Here's what you need to know!",
@@ -86,8 +82,7 @@ app.get('/api', (req, res) => {
   })
 });
  
-app.get('/api/profile', function(req, res){
-  //res.send("starting my profile");
+app.get('/api/profile', (req, res)=>{
   res.json({
     name:"nassima",
     gitHubUsername: "nassBouz",
@@ -99,14 +94,15 @@ app.get('/api/profile', function(req, res){
     {name:"Madrid",contry:"Spain"}]
   })
 });
+
 /**********
  * SERVER *
  **********/
 
 
- /// -----------display my wish list--------------
+ /// ------------- display my wish list--------------
 app.get('/api/wishList', (req, res) => {
-  // send all books as JSON response
+  // send all items as JSON response
   db.WList.find({}, (err, wishlist) => {
       if (err) { return console.log("index error: " + err); }
       res.json(wishlist);
@@ -121,41 +117,36 @@ app.post('/api/wishList',(req, res) =>{
      amazonLink : req.body.amazonLink
   });
    
-    newItem.save(function(err, wList){
+    newItem.save((err, wList)=>{
       if (err) {
         return console.log("save error: " + err);
       }
       console.log("saved ", wList.description);
-      // send back the book!
+      // send back the new item!
       res.json(newItem);
     })
   });
   
-// -------------------- update an item ------------------------
-app.put('/api/wishList/:id', function(req, res) {
+// ---------------- update an item ---------------------------------
+app.put('/api/wishList/:id', (req, res)=>{
   // get ietm id from url params (`req.params`)
   let itemId = req.params.id;   
   // get update body from req.body
   let updateBody = req.body;
   console.log("item to edit: ", req.body);
-
-  // find and update the todos's attributes
   db.WList.findOneAndUpdate(
       { _id: itemId }, // search condition
-      updateBody, // new content you want to update
-      {new:true}, // you want to receive the new object
-      (err, updatedlist) => { // callback
+      updateBody, 
+      {new:true}, 
+      (err, updatedlist) => { 
       if(err) { return console.log(err) }
       res.json(updatedlist);
   });
 });
 
-// delete todo
+//------------------ delete an item from the wishlist---------------
 app.delete('/api/wishList/:id', (req, res) => {
-  // get todo id from url params (`req.params`)
   let itemId = req.params.id;
-
-  // find todo in db by id and delete
   db.WList.findOneAndRemove(
       { _id: itemId },
       (err, deletedItem) => {
@@ -163,8 +154,6 @@ app.delete('/api/wishList/:id', (req, res) => {
           res.json(deletedItem);
   });
 });
-
-
 
 
 // listen on the port that Heroku prescribes (process.env.PORT) OR port 3000
